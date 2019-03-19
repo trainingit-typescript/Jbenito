@@ -1,8 +1,9 @@
 {
-    "compilerOptions": {
-        "target": "es5",
-        "moduleResolution": "node",
-        "resolveJsonModule": true,
-        "experimentalDecorators": true
-    }
+  "compilerOptions": {
+    "target": "es5",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "experimentalDecorators": true
+  }
 }
