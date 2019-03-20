@@ -1,2 +1,4 @@
-/* Éste es el archivo de entrada y el que arrancará tu aplicación, desde aquí instanciarás el controlador de películas y el controlador de la vista */
-console.log(`works!??`);
+import { ControladorPeliculas } from './controlador-peliculas';
+
+const peliculasCtrl = new ControladorPeliculas();
+peliculasCtrl.loadPeliculas();

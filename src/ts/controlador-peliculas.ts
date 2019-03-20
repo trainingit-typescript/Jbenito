@@ -1,1 +1,13 @@
-/* Aquí deberás crear la clase para el controlador de películas, que se encargará de extraer datos y realizar operaciones sobre el conjunto de las películas */
+
+import { Pelicula } from './datos/pelicula';
+import { PeliculaJSON } from './datos/peliculaJSON';
+import * as data from './peliculas.json';
+
+export class ControladorPeliculas {
+  private peliculas: Pelicula[];
+
+  public loadPeliculas(): void {
+    this .peliculas = data.peliculas.map(pelicula => new Pelicula(pelicula as PeliculaJSON));
+  }
+
+}

@@ -11,7 +11,11 @@
     "member-ordering": false,
     "interface-name": false,
     "arrow-parens": false,
-    "max-line-length": false
+    "max-line-length": false,
+    "quotemark": [
+      true,
+      "single"
+    ]
   },
   "rulesDirectory": []
 }
