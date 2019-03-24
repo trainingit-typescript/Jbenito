@@ -12,7 +12,8 @@ export class VistaPeliculas {
     this.paintPeliculas(Category.Vista);
     this.paintTotals(Category.Pendiente);
     this.paintTotals(Category.Vista);
-    this.loadStatistics();
+    this.paintStatistics();
+    this.paintDirectors();
   }
 
   /**
@@ -35,9 +36,16 @@ export class VistaPeliculas {
   }
 
   /**
-   * Load statistics
+   * Paint directors
    */
-  private loadStatistics():void {
+  private paintDirectors(): void {
+    console.log(this.peliculasCtrl.getAllDirectors())
+  }
+
+  /**
+   * Paint statistics
+   */
+  private paintStatistics():void {
     const paintPelicula = (pelicula: Pelicula, type: string): void => {
       this.HTML[type].querySelector('.js-titulo').textContent = pelicula.titulo
       const cartel = this.HTML[type].querySelector('.js-cartel');

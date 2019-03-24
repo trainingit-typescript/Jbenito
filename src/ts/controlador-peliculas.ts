@@ -46,4 +46,14 @@ export class ControladorPeliculas {
       peliculaA.isAfter(peliculaB) ? peliculaA : peliculaB
     )
   }
+
+  public getAllDirectors(): string[] {
+    return this.peliculas
+      .map(pelicula => pelicula.director)
+      .filter((elemento, indice, lista) => lista.indexOf(elemento) === indice);
+  }
+
+  public getPeliculasDirector(director: string): Pelicula[] {
+    return this.peliculas.filter(pelicula => pelicula.director === director);
+  }
 }
