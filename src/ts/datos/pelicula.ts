@@ -20,22 +20,22 @@ export class Pelicula {
   private fecha: moment.Moment;
 
   constructor(pelicula: PeliculaJSON) {
-    this.id = pelicula.id;
-    this.titulo = pelicula.titulo;
-    this.director = pelicula.director;
-    this.fecha = moment(pelicula.fecha, 'DD-MM-YYYY');
-    this.cartel = pelicula.cartel;
-    this.vista = pelicula.vista;
-    this.formato = Formato[pelicula.formato];
-    this.oscars = pelicula.oscars;
-    this.valoracion = pelicula.valoracion as Valoracion;
+    this .id = pelicula.id;
+    this .titulo = pelicula.titulo;
+    this .director = pelicula.director;
+    this .fecha = moment(pelicula.fecha, 'DD-MM-YYYY');
+    this .cartel = pelicula.cartel;
+    this .vista = pelicula.vista;
+    this .formato = Formato[pelicula.formato];
+    this .oscars = pelicula.oscars;
+    this .valoracion = pelicula.valoracion as Valoracion;
   }
 
-  public getFormato = (): string => Formato[this.formato];
+  public getFormato = (): string => Formato[this .formato];
 
-  public getYear = (): string => this.fecha.year().toString();
+  public getYear = (): string => this .fecha.year().toString();
 
   public isAfter(pelicula: Pelicula): boolean {
-    return this.fecha.isAfter(pelicula.fecha);
+    return this .fecha.isAfter(pelicula.fecha);
   }
 }

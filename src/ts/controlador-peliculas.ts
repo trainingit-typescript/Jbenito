@@ -9,51 +9,51 @@ export class ControladorPeliculas {
   private pendientes: Pelicula[] = [];
 
   public loadPeliculas(): void {
-    this.peliculas = data.peliculas.map(pelicula => new Pelicula(pelicula as PeliculaJSON));
-    this.splitPeliculas();
+    this .peliculas = data.peliculas.map(pelicula => new Pelicula(pelicula as PeliculaJSON));
+    this .splitPeliculas();
   }
 
   private splitPeliculas(): void {
-    this.vistas = [];
-    this.pendientes = [];
-    this.peliculas.forEach(pelicula => {
+    this .vistas = [];
+    this .pendientes = [];
+    this .peliculas.forEach(pelicula => {
       if (pelicula.vista) {
-        this.vistas.push(pelicula);
+        this .vistas.push(pelicula);
       } else {
-        this.pendientes.push(pelicula);
+        this .pendientes.push(pelicula);
       }
     });
   }
 
   public getPeliculas(vistas: boolean): Pelicula[] {
-    return vistas ? this.vistas : this.pendientes;
+    return vistas ? this .vistas : this .pendientes;
   }
 
   public getBestRated(): Pelicula {
-    return this.peliculas.reduce((peliculaA, peliculaB) => 
+    return this .peliculas.reduce((peliculaA, peliculaB) =>
       peliculaA.valoracion > peliculaB.valoracion ? peliculaA : peliculaB
     )
   }
 
   public getMoreAwarded(): Pelicula {
-    return this.peliculas.reduce((peliculaA, peliculaB) => 
+    return this .peliculas.reduce((peliculaA, peliculaB) =>
       peliculaA.oscars > peliculaB.oscars ? peliculaA : peliculaB
     )
   }
 
   public getMoreRecient(): Pelicula {
-    return this.peliculas.reduce((peliculaA, peliculaB) => 
+    return this .peliculas.reduce((peliculaA, peliculaB) =>
       peliculaA.isAfter(peliculaB) ? peliculaA : peliculaB
     )
   }
 
   public getAllDirectors(): string[] {
-    return this.peliculas
+    return this .peliculas
       .map(pelicula => pelicula.director)
       .filter((elemento, indice, lista) => lista.indexOf(elemento) === indice);
   }
 
   public getPeliculasDirector(director: string): Pelicula[] {
-    return this.peliculas.filter(pelicula => pelicula.director === director);
+    return this .peliculas.filter(pelicula => pelicula.director === director);
   }
 }

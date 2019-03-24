@@ -4,4 +4,4 @@ import { VistaPeliculas } from './vista-peliculas';
 const peliculasCtrl = new ControladorPeliculas();
 peliculasCtrl.loadPeliculas();
 
-const peliculasView = new VistaPeliculas(peliculasCtrl);
+new VistaPeliculas(peliculasCtrl);
