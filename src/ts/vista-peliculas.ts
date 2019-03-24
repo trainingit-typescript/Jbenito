@@ -7,11 +7,11 @@ export class VistaPeliculas {
   private HTML: any = {}; // FIXME: Tipar???
 
   constructor(private peliculasCtrl: ControladorPeliculas) {
-    this .loadHTML();
-    this .paintPeliculas(Category.Pendiente);
-    this .paintPeliculas(Category.Vista);
-    this .paintTotals(Category.Pendiente);
-    this .paintTotals(Category.Vista);
+    this.loadHTML();
+    this.paintPeliculas(Category.Pendiente);
+    this.paintPeliculas(Category.Vista);
+    this.paintTotals(Category.Pendiente);
+    this.paintTotals(Category.Vista);
     this.loadStatistics();
   }
 
@@ -19,19 +19,19 @@ export class VistaPeliculas {
    * Load HTML elements
    */
   private loadHTML(): void {
-    this .HTML.jsListaPendientes = document.querySelector('.js-lista-pendientes');
-    this .HTML.peliculasPendientes = this .HTML.jsListaPendientes.querySelectorAll('li');
-    this .HTML.jsListaVistas = document.querySelector('.js-lista-vistas');
-    this .HTML.peliculasVistas = this .HTML.jsListaVistas.querySelectorAll('li');
+    this.HTML.jsListaPendientes = document.querySelector('.js-lista-pendientes');
+    this.HTML.peliculasPendientes = this.HTML.jsListaPendientes.querySelectorAll('li');
+    this.HTML.jsListaVistas = document.querySelector('.js-lista-vistas');
+    this.HTML.peliculasVistas = this.HTML.jsListaVistas.querySelectorAll('li');
 
-    this .HTML.jsPeliculaBase = document.querySelector('.js-pelicula-base');
+    this.HTML.jsPeliculaBase = document.querySelector('.js-pelicula-base');
 
-    this .HTML.jsNPeliculasPendientes = document.querySelector('.js-n-peliculas-pendientes');
-    this .HTML.jsNPeliculasVistas = document.querySelector('.js-n-peliculas-vistas');
+    this.HTML.jsNPeliculasPendientes = document.querySelector('.js-n-peliculas-pendientes');
+    this.HTML.jsNPeliculasVistas = document.querySelector('.js-n-peliculas-vistas');
 
-    this .HTML.jsMejorValorada = document.querySelector('.js-mejor-valorada');
-    this .HTML.jsMasOscars = document.querySelector('.js-mas-oscars');
-    this .HTML.jsMasReciente = document.querySelector('.js-mas-reciente');
+    this.HTML.jsMejorValorada = document.querySelector('.js-mejor-valorada');
+    this.HTML.jsMasOscars = document.querySelector('.js-mas-oscars');
+    this.HTML.jsMasReciente = document.querySelector('.js-mas-reciente');
   }
 
   /**
@@ -54,8 +54,8 @@ export class VistaPeliculas {
    * @param category 
    */
   private paintTotals(category: Category): void {
-    this .HTML[`jsNPeliculas${Category[category]}s`].textContent =
-      this .peliculasCtrl.getPeliculas(Boolean(category)).length;
+    this.HTML[`jsNPeliculas${Category[category]}s`].textContent =
+      this.peliculasCtrl.getPeliculas(Boolean(category)).length;
   }
 
   /**
@@ -63,9 +63,9 @@ export class VistaPeliculas {
    * @param category
    */
   private paintPeliculas(category: Category): void {
-    const lista = this .HTML[`jsLista${Category[category]}s`] as HTMLElement;
-    this .peliculasCtrl.getPeliculas(Boolean(category)).forEach(pelicula => {
-      const item = this .HTML.jsPeliculaBase.cloneNode(true);
+    const lista = this.HTML[`jsLista${Category[category]}s`] as HTMLElement;
+    this.peliculasCtrl.getPeliculas(Boolean(category)).forEach(pelicula => {
+      const item = this.HTML.jsPeliculaBase.cloneNode(true);
       item.querySelector('.js-titulo').textContent = pelicula.titulo;
       item.querySelector('.js-director').textContent = pelicula.director;
       item.querySelector('.js-anyo').textContent = pelicula.getYear();
@@ -84,7 +84,7 @@ export class VistaPeliculas {
       }
       lista.appendChild(item);
     });
-    this .cleanPeliculasList(category);
+    this.cleanPeliculasList(category);
   }
 
   /**
@@ -92,7 +92,7 @@ export class VistaPeliculas {
    * @param category of the films (enum Category)
    */
   private cleanPeliculasList(category: Category): void {
-    const itemList = this .HTML[`peliculas${Category[category]}s`];
+    const itemList = this.HTML[`peliculas${Category[category]}s`];
     for (const item of itemList) {
       item.remove();
     }

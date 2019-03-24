@@ -9,24 +9,24 @@ export class ControladorPeliculas {
   private pendientes: Pelicula[] = [];
 
   public loadPeliculas(): void {
-    this .peliculas = data.peliculas.map(pelicula => new Pelicula(pelicula as PeliculaJSON));
-    this .splitPeliculas();
+    this.peliculas = data.peliculas.map(pelicula => new Pelicula(pelicula as PeliculaJSON));
+    this.splitPeliculas();
   }
 
   private splitPeliculas(): void {
-    this .vistas = [];
-    this .pendientes = [];
-    this .peliculas.forEach(pelicula => {
+    this.vistas = [];
+    this.pendientes = [];
+    this.peliculas.forEach(pelicula => {
       if (pelicula.vista) {
-        this .vistas.push(pelicula);
+        this.vistas.push(pelicula);
       } else {
-        this .pendientes.push(pelicula);
+        this.pendientes.push(pelicula);
       }
     });
   }
 
   public getPeliculas(vistas: boolean): Pelicula[] {
-    return vistas ? this .vistas : this .pendientes;
+    return vistas ? this.vistas : this.pendientes;
   }
 
   public getBestRated(): Pelicula {
