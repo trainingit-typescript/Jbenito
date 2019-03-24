@@ -2,7 +2,7 @@ import * as moment from 'moment';
 import { PeliculaJSON } from './peliculaJSON';
 
 type Valoracion = 0 | 1 | 2 | 3 | 5;
-enum Formato {
+export enum Formato {
   DVD,
   VHS,
   archivo,

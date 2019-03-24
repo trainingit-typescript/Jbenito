@@ -25,8 +25,8 @@ export class ControladorPeliculas {
     });
   }
 
-  public getPeliculas(vista: boolean): Pelicula[] {
-    return vista ? this .vistas : this .pendientes;
+  public getPeliculas(vistas: boolean): Pelicula[] {
+    return vistas ? this .vistas : this .pendientes;
   }
 
 }
