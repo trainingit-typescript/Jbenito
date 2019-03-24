@@ -5,3 +5,5 @@ const peliculasCtrl = new ControladorPeliculas();
 peliculasCtrl.loadPeliculas();
 
 const peliculasView = new VistaPeliculas();
+
+console.log('pruba', peliculasCtrl.getPeliculas(false));
