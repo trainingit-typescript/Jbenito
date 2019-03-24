@@ -34,4 +34,8 @@ export class Pelicula {
   public getFormato = (): string => Formato[this .formato];
 
   public getYear = (): string => this .fecha.year().toString();
+
+  public isAfter(pelicula: Pelicula): boolean {
+    return this.fecha.isAfter(pelicula.fecha);
+  }
 }

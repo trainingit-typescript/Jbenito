@@ -1,5 +1,5 @@
 import { ControladorPeliculas } from './controlador-peliculas';
-import { Formato } from './datos/pelicula';
+import { Formato, Pelicula } from './datos/pelicula';
 
 enum Category { Pendiente, Vista }
 
@@ -12,6 +12,7 @@ export class VistaPeliculas {
     this .paintPeliculas(Category.Vista);
     this .paintTotals(Category.Pendiente);
     this .paintTotals(Category.Vista);
+    this.loadStatistics();
   }
 
   /**
@@ -28,8 +29,30 @@ export class VistaPeliculas {
     this .HTML.jsNPeliculasPendientes = document.querySelector('.js-n-peliculas-pendientes');
     this .HTML.jsNPeliculasVistas = document.querySelector('.js-n-peliculas-vistas');
 
+    this .HTML.jsMejorValorada = document.querySelector('.js-mejor-valorada');
+    this .HTML.jsMasOscars = document.querySelector('.js-mas-oscars');
+    this .HTML.jsMasReciente = document.querySelector('.js-mas-reciente');
   }
 
+  /**
+   * Load statistics
+   */
+  private loadStatistics():void {
+    const paintPelicula = (pelicula: Pelicula, type: string): void => {
+      this.HTML[type].querySelector('.js-titulo').textContent = pelicula.titulo
+      const cartel = this.HTML[type].querySelector('.js-cartel');
+      cartel.src = pelicula.cartel;
+      cartel.alt = cartel.title = pelicula.titulo;
+    }
+    paintPelicula(this.peliculasCtrl.getBestRated(), 'jsMejorValorada');
+    paintPelicula(this.peliculasCtrl.getMoreAwarded(), 'jsMasOscars');
+    paintPelicula(this.peliculasCtrl.getMoreRecient(), 'jsMasReciente');
+  }
+
+  /**
+   * Paint totals
+   * @param category 
+   */
   private paintTotals(category: Category): void {
     this .HTML[`jsNPeliculas${Category[category]}s`].textContent =
       this .peliculasCtrl.getPeliculas(Boolean(category)).length;

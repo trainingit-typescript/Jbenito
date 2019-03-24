@@ -29,4 +29,21 @@ export class ControladorPeliculas {
     return vistas ? this .vistas : this .pendientes;
   }
 
+  public getBestRated(): Pelicula {
+    return this.peliculas.reduce((peliculaA, peliculaB) => 
+      peliculaA.valoracion > peliculaB.valoracion ? peliculaA : peliculaB
+    )
+  }
+
+  public getMoreAwarded(): Pelicula {
+    return this.peliculas.reduce((peliculaA, peliculaB) => 
+      peliculaA.oscars > peliculaB.oscars ? peliculaA : peliculaB
+    )
+  }
+
+  public getMoreRecient(): Pelicula {
+    return this.peliculas.reduce((peliculaA, peliculaB) => 
+      peliculaA.isAfter(peliculaB) ? peliculaA : peliculaB
+    )
+  }
 }
