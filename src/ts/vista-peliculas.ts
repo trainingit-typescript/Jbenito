@@ -8,9 +8,8 @@ export class VistaPeliculas {
 
   constructor(private peliculasCtrl: ControladorPeliculas) {
     this .loadHTML();
-    // this .cleanPeliculasList(Category.Pendiente);
-    // this .cleanPeliculasList(Category.Vista);
     this .paintPeliculas(Category.Pendiente);
+    this .paintPeliculas(Category.Vista);
   }
 
   /**
@@ -24,13 +23,23 @@ export class VistaPeliculas {
 
     this .HTML.jsPeliculaBase = document.querySelector('.js-pelicula-base');
 
+    this .HTML.jsNPeliculasPendientes = document.querySelector('.js-n-peliculas-pendientes');
+    this .HTML.jsNPeliculasVistas = document.querySelector('.js-n-peliculas-vistas');
+
   }
 
+  private paintTotals(category: Category): void {
+    this .HTML[`jsPeliculas${Category[category]}s`].textContent = 1;
+
+  }
+
+  /**
+   * Paint peliculas
+   * @param category
+   */
   private paintPeliculas(category: Category): void {
-    this .cleanPeliculasList(category);
     const lista = this .HTML[`jsLista${Category[category]}s`] as HTMLElement;
     this .peliculasCtrl.getPeliculas(Boolean(category)).forEach(pelicula => {
-      console.log('pleivula', pelicula);
       const item = this .HTML.jsPeliculaBase.cloneNode(true);
       item.querySelector('.js-titulo').textContent = pelicula.titulo;
       item.querySelector('.js-director').textContent = pelicula.director;
@@ -42,12 +51,15 @@ export class VistaPeliculas {
         item.querySelector('.js-oscars').remove();
       }
       item.querySelector(`.js-formato-${Formato[pelicula.formato].toLowerCase()}`).classList.remove('hide');
-
-
-
-      // nuevoItem.querySelector(".cliente-proveedor-n-facturas").textContent = clienteProveedor.nFacturas;
+      item.querySelector('.js-valoracion').dataset.puntos = pelicula.valoracion;
+      for (let i = 1; i <= 5; i++) {
+        const estrella = item.querySelector(`.js-valoracion-${i}`);
+        estrella.classList.remove('glyphicon-star', 'glyphicon-star-empty');
+        estrella.classList.add(pelicula.valoracion >= i && pelicula.vista ? 'glyphicon-star' : 'glyphicon-star-empty');
+      }
       lista.appendChild(item);
     });
+    this .cleanPeliculasList(category);
   }
 
   /**
