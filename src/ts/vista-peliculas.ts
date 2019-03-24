@@ -10,6 +10,8 @@ export class VistaPeliculas {
     this .loadHTML();
     this .paintPeliculas(Category.Pendiente);
     this .paintPeliculas(Category.Vista);
+    this .paintTotals(Category.Pendiente);
+    this .paintTotals(Category.Vista);
   }
 
   /**
@@ -29,8 +31,8 @@ export class VistaPeliculas {
   }
 
   private paintTotals(category: Category): void {
-    this .HTML[`jsPeliculas${Category[category]}s`].textContent = 1;
-
+    this .HTML[`jsNPeliculas${Category[category]}s`].textContent =
+      this .peliculasCtrl.getPeliculas(Boolean(category)).length;
   }
 
   /**
